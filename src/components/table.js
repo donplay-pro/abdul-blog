@@ -9,31 +9,22 @@ const Table = ({selectedOptions,setSelectedPlayer}) => {
     const [data, setData] = useState([]);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [loading, setLoading] = useState(true);
-    const [currentRows,setCurrentRows] = useState([]);
-    const [pageSize] = useState(10);
-    function paginate(pageNumber){ 
-        setCurrentPage(pageNumber);
-        let indexOfLastRow = currentPage * pageSize;
-        let indexOfFirstRow = indexOfLastRow - pageSize;
-        setCurrentRows(data.slice(indexOfFirstRow, indexOfLastRow));
-    }
+    const pageSize = 10;
     useEffect(()=>{
-        if(selectedOptions.operator,selectedOptions.gameType,selectedOptions.slateName){
-            (async function getdata(){
+        if(selectedOptions.operator && selectedOptions.gameType && selectedOptions.slateName){
                 const url = apiBaseUrl+"players?operator="+selectedOptions.operator+"&operatorGameType="+selectedOptions.gameType+"&operatorName="+selectedOptions.slateName;
                 fetch(url)
                 .then((response) => response.json())
                 .then((json) => setData(json.data));
-                setLoading(false);
-                paginate(1);
-            })();
         }
     },[selectedOptions.slateName])
+    const indexOfLastRow = currentPage * pageSize;
+    const indexOfFirstRow = indexOfLastRow - pageSize;
+    const currentRows = data.slice(indexOfFirstRow, indexOfLastRow);
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
     <div id="table">
-        {data.length > 0 && <Pagination paginate = {paginate} pageNumber ={data.length} pageSize = {pageSize} currentPage = {currentPage}/>}
     <div>
     <table>
         <thead>
@@ -46,12 +37,7 @@ const Table = ({selectedOptions,setSelectedPlayer}) => {
           </tr>
         </thead>
         <tbody>
-          {loading ? (
-            <tr>
-              <td>Loading...</td>
-            </tr>
-          ) : (
-            currentRows.map((row) => (
+            {currentRows.map((row) => (
               <tr key ={row.playerId} onClick={() => setSelectedPlayer(row)}>
                 <td>{row.operatorPlayerName?row.operatorPlayerName:"N/A"}</td>
                 <td>{row.team?row.team:"N/A"}</td>
@@ -59,10 +45,10 @@ const Table = ({selectedOptions,setSelectedPlayer}) => {
                 <td>{row.operatorSalary?row.operatorSalary:"N/A"}</td>
                 <td>{row.fantasyPoints?row.fantasyPoints:"N/A"}</td>
               </tr>
-            ))
-          )}
+            ))}
         </tbody>
       </table>
+      {data.length > 0 && <Pagination paginate = {paginate} pageNumber ={data.length} pageSize = {pageSize} currentPage = {currentPage}/>}
     </div>
     </div>
 

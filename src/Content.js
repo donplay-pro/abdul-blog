@@ -15,10 +15,9 @@ const Content = () => {
 
 
     useEffect(() => {
-        (async function getData(){
         fetch(apiBaseUrl+"operator")
         .then((response) => response.json())
-        .then((json) => setOperatorOptions(json.data));})();
+        .then((json) => setOperatorOptions(json.data));
     },[]);
 
 
