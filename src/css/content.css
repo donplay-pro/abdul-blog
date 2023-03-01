@@ -52,7 +52,6 @@ select {
     height: 50%;
     bottom: 15%;
 }
-
 #aboutPlayer {
     background: #2F2F2F;
     border-radius: 8px;
@@ -64,13 +63,14 @@ select {
 
 #name {
     font-weight: 400;
+    color: rgba(220, 20, 20, 0.8);
     font-size: 20px;
     line-height: 72px;
 }
 
 #point {
-    font-size: 32px;
-    line-height: 32px;
+    font-size: 14px;
+    line-height: 14px;
 }
 
 #pointText {
@@ -81,6 +81,6 @@ select {
     margin-bottom: 56px;
 }
 #pagination {
-    padding-left: 28%;
-    padding-bottom: 2%;
+    position: absolute;
+    bottom: 15%;
 }
