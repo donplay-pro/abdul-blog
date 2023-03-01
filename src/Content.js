@@ -22,7 +22,7 @@ const Content = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const [currentRows,setCurrentRows] = useState([]);
-    async function paginate(pageNumber){ 
+    function paginate(pageNumber){ 
         setCurrentPage(pageNumber);
         let indexOfLastRow = currentPage * pageSize;
         let indexOfFirstRow = indexOfLastRow - pageSize;

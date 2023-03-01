@@ -47,10 +47,10 @@ select {
     border: 1px solid black;
     background-color: rgb(5, 5, 5);
     position: absolute;
-    bottom: 10%;
-    left: 50%;
-    width:25%;
+    right:10%;
+    width: 25%;
     height: 50%;
+    bottom: 15%;
 }
 
 #aboutPlayer {
@@ -81,7 +81,6 @@ select {
     margin-bottom: 56px;
 }
 #pagination {
-    position: absolute;
-    bottom: 5%;
-    left: 30%;
+    padding-left: 28%;
+    padding-bottom: 2%;
 }
